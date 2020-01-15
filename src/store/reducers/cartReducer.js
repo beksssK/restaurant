@@ -1,4 +1,4 @@
-import {ADD_TO_CART, REMOVE_FROM_CART} from "../actions/actionTypes";
+import {ADD_TO_CART, INIT_CART, REMOVE_FROM_CART} from "../actions/actionTypes";
 
 const initialState = {
     cart: [],
@@ -45,6 +45,12 @@ const cartReducer = (state = initialState, action) => {
                     totalPrice: state.totalPrice - currentItem.price
                 }
             }
+        case INIT_CART:
+            return {
+                ...state,
+                cart: [],
+                totalPrice: 150,
+            };
         default:
             return state;
     }

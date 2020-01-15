@@ -2,10 +2,19 @@ import './Cart.css';
 import {connect} from "react-redux";
 import {removeFromCart} from "../../store/actions/cart";
 import React, {Component} from 'react';
+import Modal from "../UI/Modal/Modal";
+import Order from "./Order/Order";
 
 class Cart extends Component {
     state = {
         purchasable: false,
+        purchasing: false,
+    };
+    cancelPurchase = () => {
+        this.setState({purchasing: false})
+    };
+    purchase = () => {
+        this.setState({purchasing: true});
     };
     render() {
         return (
@@ -25,8 +34,11 @@ class Cart extends Component {
                     <h3>Total:</h3>
                     <p>Доставка: 150</p>
                     <p>Итого: {this.props.totalPrice}</p>
-                    <button className='OrderButton' disabled={!this.props.cartProducts.length}>Order now</button>
+                    <button className='OrderButton' disabled={!this.props.cartProducts.length} onClick={this.purchase}>Order</button>
                 </div>
+                <Modal show={this.state.purchasing} close={this.cancelPurchase}>
+                    <Order cart={this.props.cartProducts}/>
+                </Modal>
             </div>
         );
     }
