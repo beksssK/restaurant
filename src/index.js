@@ -8,8 +8,8 @@ import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 import {BrowserRouter} from 'react-router-dom'
 import * as serviceWorker from './serviceWorker';
-import productsReducer from "./store/reducers/products";
-import cartReducer from "./store/reducers/cart";
+import productsReducer from "./store/reducers/productsReducer";
+import cartReducer from "./store/reducers/cartReducer";
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({

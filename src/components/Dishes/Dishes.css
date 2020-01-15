@@ -12,6 +12,7 @@
     border: 1px solid #0065db;
     width: 60px;
     border-radius: 5px;
+    cursor: pointer;
 }
 .ProductName, .ProductPrice{
     margin: 0;

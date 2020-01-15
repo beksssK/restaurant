@@ -14,3 +14,33 @@
     margin: 0;
     padding: 10px 10px;
 }
+.OrderedItems{
+    padding: 20px 5px;
+}
+.CartDish{
+    font-size: 20px;
+    display: flex;
+    padding: 5px 15px;
+}
+.CartDish span{
+    line-height: 30px;
+}
+.CartDish i{
+    font-size: 30px;
+    line-height: 30px;
+}
+.CartDishPrice{
+    margin-left: auto;
+    padding-right: 20px;
+}
+.OrderButton{
+    border: 1px solid #0065db;
+    border-radius: 5px;
+    width: 150px;
+    font-size: 18px;
+    height: 40px;
+    cursor: pointer;
+}
+.OrderButton:disabled{
+    cursor: not-allowed;
+}
