@@ -1,13 +1,15 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Fragment} from 'react';
 import './App.css';
-import Layout from "./components/Layout/Layout";
+import {Route, Switch} from "react-router-dom";
+import Main from "./containers/Main/Main";
 
 function App() {
   return (
-      <Layout>
-
-      </Layout>
+      <Fragment>
+          <Switch>
+              <Route path='/' component={Main}/>
+          </Switch>
+      </Fragment>
   );
 }
 

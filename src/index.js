@@ -13,13 +13,13 @@ import cartReducer from "./store/reducers/cart";
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
-    pr: productsReducer,
-    ct: cartReducer
+    products: productsReducer,
+    cart: cartReducer
 });
 
 const store = createStore(
     rootReducer,
-    composeEnhancers(thunk)
+    composeEnhancers(applyMiddleware(thunk))
 );
 const app = (
     <Provider store={store}>

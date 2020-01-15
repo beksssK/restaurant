@@ -1,0 +1,16 @@
+.Cart{
+    border: 1px solid #0065db;
+    border-radius: 7px;
+    text-align: center;
+}
+.CartTitle{
+    border-bottom: 1px solid #0065db;
+    padding: 10px;
+    margin: 0;
+}
+.OrderedTitle{
+    display: inline-block;
+    border-bottom: 1px solid #0065db;
+    margin: 0;
+    padding: 10px 10px;
+}

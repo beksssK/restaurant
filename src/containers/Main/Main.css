@@ -1,0 +1,12 @@
+.Content{
+    max-width: 1200px;
+    margin: 10px auto;
+    display: flex;
+    justify-content: space-around;
+}
+.Dishes{
+    width: 60%;
+}
+.Cart{
+    width: 40%;
+}
