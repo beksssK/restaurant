@@ -37,7 +37,7 @@ class Cart extends Component {
                     <button className='OrderButton' disabled={!this.props.cartProducts.length} onClick={this.purchase}>Order</button>
                 </div>
                 <Modal show={this.state.purchasing} close={this.cancelPurchase}>
-                    <Order cart={this.props.cartProducts}/>
+                    <Order cart={this.props.cartProducts} cancel={this.cancelPurchase}/>
                 </Modal>
             </div>
         );
@@ -47,6 +47,7 @@ class Cart extends Component {
 const mapStateToProps = state => ({
     cartProducts: state.cart.cart,
     totalPrice: state.cart.totalPrice,
+    loading: state.cart.loading,
 });
 const mapDispatchToProps = dispatch => ({
     removeFromCart: dishInfo => dispatch(removeFromCart(dishInfo)),

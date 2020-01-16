@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import './Order.css';
 import {connect} from "react-redux";
-import {sendOrder} from "../../../store/actions/cart";
+import {initCart, sendOrder} from "../../../store/actions/cart";
 
 class Order extends Component {
     state = {
@@ -10,10 +10,9 @@ class Order extends Component {
         phone: '',
     };
     valueChange = event => this.setState({[event.target.name]: event.target.value});
-    submitOrder = e => {
+    submitOrder = async e => {
         e.preventDefault();
         let cart = this.props.cart.map(dish => ({name: dish.name, count: dish.count}));
-        console.log(cart);
         let data = {
             customer: {
                 name: this.state.name,
@@ -22,7 +21,11 @@ class Order extends Component {
             },
             cart,
         };
-        this.props.sendOrder(data);
+        await this.props.sendOrder(data);
+        this.setState({name: '', address: '', phone: ''});
+        this.props.cancel();
+        this.props.initCart();
+        alert('Your order has been successfully sent');
     };
     render() {
         return (
@@ -34,6 +37,7 @@ class Order extends Component {
                             <input
                                 name='name'
                                 onChange={this.valueChange}
+                                value={this.state.name}
                                 id='name'
                                 type="text"
                                 placeholder='Vasya'
@@ -45,6 +49,7 @@ class Order extends Component {
                             <input
                                 name='address'
                                 onChange={this.valueChange}
+                                value={this.state.address}
                                 id='address'
                                 type="text"
                                 placeholder='Joomart Bokonbaev, 104a'
@@ -56,11 +61,12 @@ class Order extends Component {
                             <input
                                 name='phone'
                                 onChange={this.valueChange}
+                                value={this.state.phone}
                                 id='phone'
                                 type="tel"
                                 placeholder='0770595857'
                                 required
-                                pattern="[0]{1}[5-9]{3}[0-9]{2}[0-9]{2}[0-9]{2}"
+                                pattern="[0]{1}[1-9]{3}[0-9]{2}[0-9]{2}[0-9]{2}"
                             />
                         </label>
                         <button type='submit'>Order now</button>
@@ -70,7 +76,10 @@ class Order extends Component {
         );
     }
 }
+
+
 const mapDispatchToProps = dispatch => ({
     sendOrder: order => dispatch(sendOrder(order)),
+    initCart: () => dispatch(initCart()),
 });
 export default connect(null, mapDispatchToProps)(Order);

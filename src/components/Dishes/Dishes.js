@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import './Dishes.css';
 import {addToCart} from "../../store/actions/cart";
 import {fetchDishes} from "../../store/actions/dishes";
+import Spinner from "../UI/Spinner/Spinner";
 
 class Dishes extends Component {
     componentDidMount() {
@@ -11,24 +12,26 @@ class Dishes extends Component {
     render() {
         return (
             <div className='Dishes'>
-                {this.props.productsState.map(product => (
-                    <div className='ProductItem' key={product.id}>
-                        <div className='ProductImage'>
-                            <img src={product.img} width='200px' height='auto' alt=""/>
-                        </div>
-                        <div>
-                            <p className='ProductName'>
-                                {product.name}
-                            </p>
-                            <p className='ProductPrice'>
-                                KGS {product.price}
-                            </p>
-                        </div>
-                        <button onClick={() => this.props.addToCart(product)}>
-                            <i className="fas fa-cart-plus"/>
-                        </button>
-                    </div>
-                ))}
+                {this.props.loading ? <Spinner/> : (
+                    this.props.productsState.map(product => (
+                            <div className='ProductItem' key={product.id}>
+                                <div className='ProductImage'>
+                                    <img src={product.img} width='200px' height='auto' alt=""/>
+                                </div>
+                                <div>
+                                    <p className='ProductName'>
+                                        {product.name}
+                                    </p>
+                                    <p className='ProductPrice'>
+                                        KGS {product.price}
+                                    </p>
+                                </div>
+                                <button onClick={() => this.props.addToCart(product)}>
+                                    <i className="fas fa-cart-plus"/>
+                                </button>
+                            </div>
+                        ))
+                )}
             </div>
         );
     }
@@ -37,6 +40,7 @@ class Dishes extends Component {
 
 const mapStateToProps = state => ({
     productsState: state.products.allProducts,
+    loading: state.products.loading,
 });
 const mapDispatchToProps = dispatch => ({
     addToCart: dishInfo => dispatch(addToCart(dishInfo)),

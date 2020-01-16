@@ -19,7 +19,6 @@ const productsReducer = (state = initialState, action) => {
                 allProducts: Object.keys(action.dishes).map(item => ({...action.dishes[item], id: item})),
             };
         case FETCH_DISHES_ERROR:
-            console.log('errroooor');
             return {
                 ...state,
                 loading: false,

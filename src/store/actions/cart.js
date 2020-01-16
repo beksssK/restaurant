@@ -9,7 +9,7 @@ export const initCart = () => ({type: INIT_CART});
 
 const orderRequest = () => ({type: ORDERS_REQUEST});
 const orderSuccess = () => ({type: ORDERS_SUCCESS});
-const orderError = error => ({type: ORDERS_ERROR, error});
+const orderError = () => ({type: ORDERS_ERROR});
 
 export const sendOrder = order => {
     return async dispatch => {
@@ -19,7 +19,7 @@ export const sendOrder = order => {
             dispatch(orderSuccess());
         } catch (e) {
             console.error('Error happened: ', e);
-            dispatch(orderError(e));
+            dispatch(orderError());
         }
     }
 };
